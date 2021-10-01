@@ -1,6 +1,11 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-export default function CurrentlyPlaying({ songName, imgUrl, artists }) {
+export default function CurrentlyPlaying({
+  songName,
+  imgUrl,
+  artists,
+  songUrl,
+}) {
   const router = useRouter()
   const { locale } = router
   return (
@@ -17,8 +22,12 @@ export default function CurrentlyPlaying({ songName, imgUrl, artists }) {
           {locale == 'en' ? 'Now playing' : 'Reproduciendo'}
         </p>
       </div>
-      <div className='w-72 sm:w-96 shadow-sm'>
-        <div className='flex bg-white rounded-md overflow-hidden min-w-full items-center'>
+      <div className='w-72 sm:w-96'>
+        <a
+          href={songUrl}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='flex bg-white rounded-md overflow-hidden min-w-full items-center shadow-sm hover:shadow'>
           <div className='relative w-16 h-16 flex-shrink-0'>
             <Image
               className='absolute w-full h-full object-cover'
@@ -35,7 +44,7 @@ export default function CurrentlyPlaying({ songName, imgUrl, artists }) {
               {artists}
             </p>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   )

@@ -20,6 +20,7 @@ export default function UsingSwr() {
         songName={data.songName}
         artists={data.artists}
         imgUrl={data.img}
+        songUrl={data.songUrl}
       />
     </div>
   )

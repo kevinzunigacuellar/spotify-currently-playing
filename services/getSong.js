@@ -3,10 +3,11 @@ const fromApitoResponseCurrentSong = apiResponse => {
     name: songName,
     artists: artistsData,
     album: { images },
+    external_urls: { spotify: songUrl },
   } = apiResponse.data.item
   const img = images[2].url
   const artists = artistsData.map(artist => artist.name).join(', ')
-  return { songName, artists, img }
+  return { songName, artists, img, songUrl }
 }
 
 export const getSong = async url => {
