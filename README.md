@@ -1,7 +1,10 @@
-# Spotify Currently Playing Song
+
+
+## Spotify Currently Playing Song
 
 This is small demo that uses the Spotify API to search for the song you are currently listening to.
-You can see a live example in [here](https://vercel)
+
+You can see a live example in [here](https://spotify-currently-playing-blue.vercel.app/)
 
 ## Getting Started with Spotify Developer API
 
@@ -22,7 +25,7 @@ This will return a url with code as a query parameter. We will use this code to 
 http://localhost:3000/callback?code=<code>
 ```
 
-To get a refresh token just copy the following command and paste it into a new terminal window. Don't forget to replace the client ID and client secret and code with your own. To base64 encode you can use [base64econde.org](https://www.base64encode.org/).
+To get a refresh token just copy the following command and paste it into a new terminal window. Don't forget to replace the client ID, client secret and code with your own. To base64 encode you can use [base64econde.org](https://www.base64encode.org/).
 
 ```
 curl -H "Authorization: Basic <base64 encoded client_id:client_secret>"
