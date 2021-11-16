@@ -1,8 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Spotify Currently Playing Song
 
-## Getting Started
+This is small demo that uses the Spotify API to search for the song you are currently listening to.
+You can see a live example in [here](https://vercel)
 
-First, run the development server:
+## Getting Started with Spotify Developer API
+
+The first step is to get your Spotify credentials. You can do this by creating an account in [Spotify Developers](https://developer.spotify.com/dashboard/applications) and creating a new application.
+
+Once you create an application it will give you a client ID and a client secret. You will use these to authorize your app and get your refresh token.
+
+To authorize your app and get the current song playing in your Spotify account paste the following link into your browser. Don't forget to add the client ID to the url.
+
+```
+https://accounts.spotify.com/authorize?client_id=<your_client_id>&response_type=code&redirect_uri=http
+%3A%2F%2Flocalhost:3000&scope=user-read-currently-playing
+```
+
+This will return a url with code as a query parameter. We will use this code to get a refresh token.
+
+```
+http://localhost:3000/callback?code=<code>
+```
+
+To get a refresh token just copy the following command and paste it into a new terminal window. Don't forget to replace the client ID and client secret and code with your own. To base64 encode you can use [base64econde.org](https://www.base64encode.org/).
+
+```
+curl -H "Authorization: Basic <base64 encoded client_id:client_secret>"
+-d grant_type=authorization_code -d code=<code> -d redirect_uri=http%3A
+%2F%2Flocalhost:3000 https://accounts.spotify.com/api/token
+```
+
+## Getting started
+
+Fork this repo and add a .env.local file with the following content:
+
+```bash
+SPOTIFY_CLIENT_ID=<your_client_id>
+SPOTIFY_CLIENT_SECRET=<your_client_secret>
+SPOTIFY_REFRESH_TOKEN=<your_refresh_token>
+```
+
+Run the following command to start the development server.
 
 ```bash
 npm run dev
@@ -11,24 +49,3 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

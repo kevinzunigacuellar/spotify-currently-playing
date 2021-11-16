@@ -1,10 +1,9 @@
 export default function NotPlaying() {
   return (
-    <div className='grid justify-items-center sm:w-96 w-72 bg-white rounded-md py-3'>
+    <div className='grid justify-items-center sm:w-96 w-72 bg-white rounded-md py-3 mt-8'>
       <div className='flex items-center'>
         <svg
           className='fill-current text-green-400 w-6 h-auto'
-          xmlns='http://www.w3.org/2000/svg'
           viewBox='0 0 2931 2931'
           width='2931'
           height='2931'>
